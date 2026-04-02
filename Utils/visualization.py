@@ -37,7 +37,7 @@ def createPassingNetwork(teamName, gameDfs, passThreshold, playerInformation, ma
         DG.add_edge(sender, receiver, weight=weight)
 
     # Collecting Player Last Names
-    teamInfromation = playerInformation['Barcelona']
+    teamInfromation = playerInformation[teamName]
     lastnames = {
         details['index']: (
             'Goal' if details['name'] == 'Goal Node'
