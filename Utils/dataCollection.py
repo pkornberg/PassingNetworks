@@ -69,8 +69,8 @@ def collectDataOneGame(fileName, targetTeam):
     """
 
     # Initializing Arrays
-    sender1, receiver1, timestamp1, type1, xG1 = [], [], [], [], []
-    sender2, receiver2, timestamp2, type2, xG2 = [], [], [], [], []
+    sender1, receiver1, timestamp1, type1, xG1, location1 = [], [], [], [], [], []
+    sender2, receiver2, timestamp2, type2, xG2, location2 = [], [], [], [], [], []
 
     # Initializing Player Information
     playerInfo1 = {}
@@ -144,6 +144,7 @@ def collectDataOneGame(fileName, targetTeam):
     for event in data:
         pid = event.get("player", {}).get("id")
         time = event.get("minute", 0) * 60 + event.get("second", 0)
+        location = event.get("location")
 
         # First Half
         if event["period"] == 1:
@@ -156,6 +157,7 @@ def collectDataOneGame(fileName, targetTeam):
                 timestamp1.append(time)
                 type1.append("Pass")
                 xG1.append(0)
+                location1.append(location)
             if "shot" in event and pid in ids1:
                 sender1.append(pid)
                 receiver1.append(-1)
@@ -163,6 +165,7 @@ def collectDataOneGame(fileName, targetTeam):
                 type1.append("Shot")
                 xG = round(event["shot"]["statsbomb_xg"], 2)
                 xG1.append(xG)
+                location1.append(location)
 
         # Second Half
         if event["period"] == 2:
@@ -175,6 +178,7 @@ def collectDataOneGame(fileName, targetTeam):
                 timestamp2.append(time)
                 type2.append("Pass")
                 xG2.append(0)
+                location2.append(location)
             if "shot" in event and pid in ids2:
                 sender2.append(pid)
                 receiver2.append(-1)
@@ -182,9 +186,10 @@ def collectDataOneGame(fileName, targetTeam):
                 type2.append("Shot")
                 xG = round(event["shot"]["statsbomb_xg"], 2)
                 xG2.append(xG)
+                location2.append(location)
 
     # Format Dataframes
-    firstHalf = pd.DataFrame({"Sender": sender1, "Receiver": receiver1, "Timestamp": timestamp1, "Type": type1, "xG": xG1})
-    secondHalf = pd.DataFrame({"Sender": sender2, "Receiver": receiver2, "Timestamp": timestamp2, "Type": type2, "xG": xG2})
+    firstHalf = pd.DataFrame({"Sender": sender1, "Receiver": receiver1, "Timestamp": timestamp1, "Type": type1, "xG": xG1, "Location": location1})
+    secondHalf = pd.DataFrame({"Sender": sender2, "Receiver": receiver2, "Timestamp": timestamp2, "Type": type2, "xG": xG2, "Location": location2})
 
     return firstHalf, secondHalf, playerInfo1, playerInfo2
