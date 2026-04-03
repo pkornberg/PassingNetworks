@@ -62,7 +62,15 @@ jupyter notebook Examples/workflow.ipynb
 ---
 
 ## Results
- 
+
+### Passing Network
+
 Below is an example of a passing network generated from an entire season, around 36 matches. However, this repo can be used for individual match analysis as well. For all graphs, a minimum passing threshold can be set to filter out players. 
 
 ![PassingNetwork](Images/BarcelonaPassingNetwork.png)
+
+### Passing Heatmap
+
+This repository can also generate passing heatmaps that visualize where a player tends to distribute the ball most frequently, offering insights into their positioning, decision making, and overall influence on the game. These heatmaps can also help identify patterns such as preferred passing zones and areas of high activity.
+
+![Passing Heatmap](Images/passingHeatmap.png)
