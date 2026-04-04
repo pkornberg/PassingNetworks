@@ -107,12 +107,13 @@ def createPassingNetwork(teamName, gameDfs, passThreshold, playerInformation, ma
     plt.tight_layout()
     plt.show()
 
-def playerHeatmap(dataFrames, playerID, teamName, playerInformation):
+def playerHeatmap(dataFrames, playerID, playerName, teamName, playerInformation):
     """
     Function to Display Player Passing Heatmap
 
     : param arr dataFrames - List of Game DataFrames
     : param int playerID - Player ID Number
+    : param str playerName - Preferred Player Name for Graphing
     : param str teamName - Name of Team
     : param dict playerInformation - Dictionary of Player Information
 
@@ -202,7 +203,7 @@ def playerHeatmap(dataFrames, playerID, teamName, playerInformation):
         ax.add_patch(patches.Arc((cx, cy), 4, 4, theta1 = t1, theta2 = t2, **LINE_KW))
 
     # Drawing Titleand Subtitle
-    ax.text(width / 2, height + 6, 'Lionel Messi', fontsize = 34, ha = 'center')
+    ax.text(width / 2, height + 6, f'{playerName}', fontsize = 34, ha = 'center')
     ax.text(width / 2, height + 2, f'Passing Heatmap With {len(gameDfs)} Total Passes', 
             fontsize = 14, color = "#000000", ha = 'center')
     
