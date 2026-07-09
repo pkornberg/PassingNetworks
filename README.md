@@ -33,12 +33,6 @@ PassingNetworks/
    ```bash
    pip install -r requirements.txt
    ```
- 
-3. Populate the `Data/` directory by running functions in the data collection script:
-   ```bash
-   python Utils/dataCollection.py
-   ```
- 
 ---
  
 ## Usage
@@ -53,14 +47,6 @@ jupyter notebook Examples/workflow.ipynb
  
 ---
  
-## How It Works
- 
-1. **Data Collection** — Fetches and collects match event data including passes, shots, positions, and player metadata from StatsBomb API
-2. **Data Processing** — Gathers information to help with player visualization
-3. **Visualization** — Renders passing networks with nodes representing players and edges representing passing frequency over the course of a season
- 
----
-
 ## Results
 
 ### Passing Network
